@@ -4,8 +4,9 @@ import (
   "encoding/json"
   "net/http"
   "strings"
-  "log" // wasn't in the tutorial code
-  "time" // wasn't in the tutorial either
+  "log"
+  "time"
+  "fmt"
 )
 
 // func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
@@ -131,7 +132,7 @@ func main() {
 
   http.HandleFunc("/hello", hello)
 
-    // defining the handler inline; everything after "/weather/" => city
+  // defining the handler inline; everything after "/weather/" => city
   http.HandleFunc("/weather/", func(w http.ResponseWriter, r *http.Request) {
     begin := time.Now()
     city := strings.SplitN(r.URL.Path, "/", 3)[2]
@@ -152,5 +153,3 @@ func main() {
 
   http.ListenAndServe(":8080", nil)
 }
-
-// WeatherUnderground API: 14d238fb55d3edd9
